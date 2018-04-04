@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
+	1. 웹 자원과 관련되지 않은 모든 자원의 설정을 위해서 존재
+	   (웹과 관련된 설정은 appServlet 폴더 내에 있는 servlet-context.xml 파일로 분리한다)
+	2. 여기서 다양한 설정을 하기 위해서는 아래 보이는 탭 중에서 Namespaces탭을 사용해 체크를 해줘서 범위를 넓혀줘야 한다.
+	3. 일단, aop, context, jdbc, mybatis-spring에 체크한다. 그러면 상단에 코드가 추가된다.
+	
+	-->
 		
 </beans>
