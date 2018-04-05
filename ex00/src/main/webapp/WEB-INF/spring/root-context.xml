@@ -18,5 +18,15 @@
 	3. 일단, aop, context, jdbc, mybatis-spring에 체크한다. 그러면 상단에 코드가 추가된다.
 	
 	-->
+	
+	<!-- 문> MySQL에 연결하기 위해 DataSource 코드 작성  -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>      <!-- 여기랑 아래 코드가 홈페이지에 올라가 있는 소스와 책과 달라서 에러가 났다.  -->
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false"></property>
+		<property name="username" value="zerock"></property>
+		<property name="password" value="zerock"></property>
+	</bean>
+	<!--//  -->
 		
 </beans>
