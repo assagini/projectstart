@@ -20,8 +20,7 @@
 	-->
 	
 	<!-- 문> MySQL에 연결하기 위해 DataSource 코드 작성  -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>      <!-- 여기랑 아래 코드가 홈페이지에 올라가 있는 소스와 책과 달라서 에러가 났다.  -->
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false"/>
 		<property name="username" value="zerock"/>
@@ -35,7 +34,4 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />		<!-- 문> 스프링이 동작할 때 같이 동작하도록 설정해주는 작업  -->
 	</bean>
-	
-	
-		
 </beans>
