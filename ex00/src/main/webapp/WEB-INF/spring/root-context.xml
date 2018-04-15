@@ -21,8 +21,8 @@
 	
 	<!-- MySQL에 연결하기 위해 DataSource 코드 작성  -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>      <!-- 여기랑 아래 코드가 홈페이지에 올라가 있는 소스와 책과 달라서 에러가 났다.  -->
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false"/>
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>      <!-- 좀 더 자세한 MyBatis로그를 보기 위해서 바꿈, 원래는 com.mysql.jdbc.Driver  -->
+		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false"/>		<!--마찬가지 이유로 :log4jdbc 이거 넣었음  -->
 		<property name="username" value="zerock"/>
 		<property name="password" value="zerock"/>
 	</bean>
