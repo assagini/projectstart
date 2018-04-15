@@ -19,7 +19,7 @@
 	
 	-->
 	
-	<!-- 문> MySQL에 연결하기 위해 DataSource 코드 작성  -->
+	<!-- MySQL에 연결하기 위해 DataSource 코드 작성  -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>      <!-- 여기랑 아래 코드가 홈페이지에 올라가 있는 소스와 책과 달라서 에러가 났다.  -->
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false"/>
@@ -28,10 +28,23 @@
 	</bean>
 	<!--//  -->
 	
-	<!-- 문> MyBatis와 스프링 연결  -->
+	<!-- MyBatis와 스프링 연결  -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">			<!-- sqlSessionFactory는 Connection을 생성하고, 처리한다. -->
 																							<!-- SqlSessionFactoryBean는 sqlSessionFactory를 생성해주는 특별한 객체이다. -->
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:/mybatis-config.xml" />		<!-- 문> 스프링이 동작할 때 같이 동작하도록 설정해주는 작업  -->
+		<property name="configLocation" value="classpath:/mybatis-config.xml" />		<!--스프링이 동작할 때 같이 동작하도록 설정해주는 작업  -->
+		<property value="classpath:mappers/**/*Mapper.xml" name="mapperLocations"/>		<!--mappers폴더내에서 파일이름이 Mapper.xml로 끝나면 자동으로 인식되도록 하는 설정  -->
 	</bean>
+	<!--//  -->
+	
+	<!-- SqlSessionTemplate이라는 클래스로 개발자들이 직접 연결을 맺고, 종료하는 작업을 줄인다. -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	<!--//  -->	
+	
+	<!--@Repository 애노테이션이 설정되더라도 스프링에서 해당 페키지를 스캔하지 못하면 제대로 스프링의 빈으로 등록이 안된다. 그래서 아래 코드를 넣는다.  -->
+	<context:component-scan base-package="org.zerock.persistence"> </context:component-scan>
+	<!--//  -->
+	
 </beans>

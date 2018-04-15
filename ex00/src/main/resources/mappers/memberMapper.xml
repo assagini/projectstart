@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="org.zerock.mapper.MemberMapper">		<!--이곳 네임스페이스는 dao에서 쓰인다.  -->
+
+	<select resultType="string" id="getTime"> 
+	select now() 
+	</select>
+	
+	<insert id="insertMember"> 
+	insert into tbl_member (userid,userpw, username, email) 
+	values (#{userid}, #{userpw}, #{username}, #{email}) 
+	</insert>
+
+	<select resultType="org.zerock.domain.MemberVO" id="selectMember"> 
+	select * 
+	from tbl_member 
+	where userid = #{userid} 
+	</select>
+
+	<select resultType="org.zerock.domain.MemberVO" id="readWithPW"> 
+	select * 
+	from tbl_member 
+	where userid = #{userid} and userpw = #{userpw} 
+	</select>
+
+</mapper>
