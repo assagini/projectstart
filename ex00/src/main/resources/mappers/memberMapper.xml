@@ -14,7 +14,7 @@
 <mapper namespace="org.zerock.mapper.MemberMapper">		<!--이곳 네임스페이스는 dao에서 쓰인다.  -->
 
 	<select resultType="string" id="getTime"> 
-	select now() 
+	select now() 		<!--now()함수를 쓰면 현재 시간을 얻을 수 있다.  -->
 	</select>
 	
 	<insert id="insertMember"> 
