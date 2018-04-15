@@ -7,4 +7,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <!--지금 당장은 아니더라도 나중을 위해서 MyBatis의 설정 파일을 하나 추가해주는 것임  -->
 <!--에러가 나서 한창 뒤져보니깐 이걸 src/test/resource 밑에 넣었음.. 좀!!!  -->
 
+
+	<!--mapper작성하는데 parameterType이나 resultType을 패키지까지 포함된 클래스명을 작성하는 일이
+	번거롭다면 여기에 이렇게 작성한다  -->
+	<!--typeAliases는 하위 요소로 package와 typeAlias를 가질 수 있다.  -->
+	<typeAliases>
+		<package name="org.zerock.domain"/>    
+	</typeAliases>
+	<!--//  -->
+
+
 </configuration>
