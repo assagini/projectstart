@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>	<!--밑에 날짜 포맷 기능을 이용할 수 있게 함  -->
 <%@ page session="false"%>
 
 <%@include file="../include/header.jsp"%>
@@ -18,34 +18,28 @@
 					<h3 class="box-title">LIST ALL PAGE</h3>
 				</div>
 				<div class="box-body">
+					<table class="table table-bordered">
+						<tr>
+							<th style="width: 10px">BNO</th>
+							<th>TITLE</th>
+							<th>WRITER</th>
+							<th>REGDATE</th>
+							<th style="width: 40px">VIEWCNT</th>
+						</tr>
+						<c:forEach items="${list}" var="boardVO">		<!--JSTL문법으로 반복  -->
+						<tr>
+							<td>${boardVO.bno}</td>
+							<td><a href='/board/read?bno=${boardVO.bno}'>${boardVO.title}</a></td>		<!--제목을 클릭했을 때 해당 bno값에 대한 content가 보일 수 있게함  -->
+							<!--바로 위 코드, read컨트롤러가 있어야 겠다.(get방식) 만들러가자  -->
+							<td>${boardVO.writer}</td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+									value="${boardVO.regdate}" /></td>		<!--작성시간은 포맷을 지정해서 나오게 함  -->
+							<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
+						</tr>
+						</c:forEach>
+					</table>
+				</div> <!-- /.box-body -->
 				
-<table class="table table-bordered">
-	<tr>
-		<th style="width: 10px">BNO</th>
-		<th>TITLE</th>
-		<th>WRITER</th>
-		<th>REGDATE</th>
-		<th style="width: 40px">VIEWCNT</th>
-	</tr>
-
-
-<c:forEach items="${list}" var="boardVO">
-
-	<tr>
-		<td>${boardVO.bno}</td>
-		<td><a href='/board/read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
-		<td>${boardVO.writer}</td>
-		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-				value="${boardVO.regdate}" /></td>
-		<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
-	</tr>
-
-</c:forEach>
-
-</table>
-
-				</div>
-				<!-- /.box-body -->
 				<div class="box-footer">Footer</div>
 				<!-- /.box-footer-->
 			</div>

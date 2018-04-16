@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 //import org.zerock.domain.Criteria;
@@ -74,9 +75,9 @@ public class BoardController {
     logger.info("show all list......................");
     model.addAttribute("list", service.listAll());		//잘 모르겠지만 이렇게 써야 데리고 화면에 값을 뿌릴 수 있나보다.
   }
-/*
+
   @RequestMapping(value = "/read", method = RequestMethod.GET)
-  public void read(@RequestParam("bno") int bno, Model model) throws Exception {
+  public void read(@RequestParam("bno") int bno, Model model) throws Exception {		//bno를 데리고 올 떄 저렇게 쓰는 거 같음 @RequestParam("bno") int bno
 
     model.addAttribute(service.read(bno));
   }
@@ -91,13 +92,13 @@ public class BoardController {
     return "redirect:/board/listAll";
   }
 
-  @RequestMapping(value = "/modify", method = RequestMethod.GET)
+  @RequestMapping(value = "/modify", method = RequestMethod.GET)		//조회 페이지로 이동하게 한다.
   public void modifyGET(int bno, Model model) throws Exception {
 
     model.addAttribute(service.read(bno));
   }
 
-  @RequestMapping(value = "/modify", method = RequestMethod.POST)
+  @RequestMapping(value = "/modify", method = RequestMethod.POST)		//수정 처리
   public String modifyPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
 
     logger.info("mod post............");
@@ -107,7 +108,8 @@ public class BoardController {
 
     return "redirect:/board/listAll";
   }
-
+  
+/*
   @RequestMapping(value = "/listCri", method = RequestMethod.GET)
   public void listAll(Criteria cri, Model model) throws Exception {
 
