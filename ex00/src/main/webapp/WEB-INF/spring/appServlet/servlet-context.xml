@@ -28,4 +28,5 @@
 	
 	<context:component-scan base-package="org.zerock.zerock" />	
 	<context:component-scan base-package="org.zerock.web" />
+	<context:component-scan base-package="org.zerock.controller" />
 </beans:beans>

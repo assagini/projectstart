@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 //import org.zerock.domain.Criteria;
 //import org.zerock.domain.PageMaker;
@@ -37,17 +38,22 @@ public class BoardController {
   }
 
   @RequestMapping(value = "/register", method = RequestMethod.POST)
-  public String registPOST(BoardVO board, Model model) throws Exception {
+  public String registPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
   
    logger.info("regist post ...........");
    logger.info(board.toString());
   
    service.regist(board);
   
-   model.addAttribute("result", "success");		//model에 값을 넣는데 success라는 String값을 넣는것이다.
+   //model.addAttribute("result", "success");		//model에 값을 넣는데 success라는 String값을 넣는것이다.
+   													//이렇게 쓰면 주소창에 ?result=success라고 붙는다
   
-   return "/board/success";
-   			// return "redirect:/board/listAll";
+   rttr.addFlashAttribute("msg", "SUCCESS");		//이건 주소창에 저렇게 나오지 말게 하는 코드이다. 쓰려면 매개변수에 RedirectAttributes 어쩌구 라고 써 준다.
+   													//가보면 스크립트문에서 SUCCESS이면 alert창을 뜨게 해놨다.
+   
+   //return "/board/success";   //처음에 이 코드였는데 사용자가 도배 작업을 할 수 있다고 해서 redirect형식을 쓴다.
+   return "redirect:/board/listAll";		//jsp만 만들면 되는 게 아님, jsp를 화면에 보여주려면 get방식 컨트롤러가 있어야 함
+   											//redirect를 쓰면 컨트롤러를 search하고 안 쓰면 jsp파일을 search한다.
    }
 
   /*@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -58,17 +64,17 @@ public class BoardController {
 
     service.regist(board);
 
-    rttr.addFlashAttribute("msg", "success");
+    
     return "redirect:/board/listAll";
   }
-
+*/
   @RequestMapping(value = "/listAll", method = RequestMethod.GET)
   public void listAll(Model model) throws Exception {
 
     logger.info("show all list......................");
-    model.addAttribute("list", service.listAll());
+    model.addAttribute("list", service.listAll());		//잘 모르겠지만 이렇게 써야 데리고 화면에 값을 뿌릴 수 있나보다.
   }
-
+/*
   @RequestMapping(value = "/read", method = RequestMethod.GET)
   public void read(@RequestParam("bno") int bno, Model model) throws Exception {
 
