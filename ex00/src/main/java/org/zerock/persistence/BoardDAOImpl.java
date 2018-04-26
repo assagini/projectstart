@@ -45,7 +45,7 @@ public class BoardDAOImpl implements BoardDAO {
     return session.selectList(namespace + ".listAll");
   }
 
- /* @Override
+  @Override
   public List<BoardVO> listPage(int page) throws Exception {
 
     if (page <= 0) {
@@ -56,7 +56,8 @@ public class BoardDAOImpl implements BoardDAO {
 
     return session.selectList(namespace + ".listPage", page);
   }
-
+  
+/*
   @Override
   public List<BoardVO> listCriteria(Criteria cri) throws Exception {
 
